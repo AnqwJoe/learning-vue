@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.active{
+				color: red;
+			}
+			.big{
+				font-weight: bold;
+				font-size: 64px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--v-bind:class-->
+		<!--为html标记绑定样式 单class对象-->
+		<div id="app">
+			<div v-bind:class="myclass">红色文本</div>
+			<button @click="btnclick">改变class</button>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//active 和 big 都是已设定好的样式,想要显示哪个属性就设置为true
+					myclass:{
+						active:true,
+						big:true
+					}
+				},
+				methods:{
+					//点击后 big属性将不再生效
+					btnclick: function(){
+						//取反
+						this.myclass.big = !this.myclass.big;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

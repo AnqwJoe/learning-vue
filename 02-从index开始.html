@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--html5文档-->
+		<!--vue.js导入  bootcdn-->
+		<!--Vue对象-->
+
+		<div id="app">
+			<!--用{{}}引用msg-->
+			{{this.msg}}
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			let vm = new Vue({
+				//与要使用的代码块id相对应
+				el:'#app',
+				data:{
+					msg:'hello Vue.js!'
+				}
+			});
+		</script>
+	</body>
+</html>

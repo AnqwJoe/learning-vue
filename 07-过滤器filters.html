@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器</title>
+	</head>
+	<body>
+		<!--filters-->
+		<!--格式化变量内容的输出，（如：日期格式化，字母大小写，数字再计算等）-->
+		<div id="app">
+			<p>{{msg}}</p>
+			<!--给数据后面加一个过滤器，中间用管道符隔开-->
+			<!--把msg里面的内容传到 toupper里面去，执行-->
+			<p>{{msg | toupper}}</p>
+			<hr />
+			<p>现在的vue.js学习进度是 {{num}}({{num | topercentage}})</p>
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'hello vue.js world!',
+					num:0.3
+				},
+				//新过滤器属性filters
+				filters:{
+					//在里面定义过滤方法
+					toupper: function(value){
+						return value.toUpperCase();
+					},
+					topercentage: function(value){
+						return value * 100 + '%';
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

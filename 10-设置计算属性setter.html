@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--setter-->
+		<!--设置计算属性，同步更新元数据的值-->
+		<div id="app">
+			<p>今年3月3日发卖任天堂新一代主机Switch的价格是：{{price}}日元，含税价格是{{priceInTax}}日元，折合人民币为：{{priceChinaRMB}}元</p>
+			<button @click="btnclick(10800)">把含税价改为10800日元</button>
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					price:29980
+				},
+				//先设置一个计算属性 computed 
+				computed:{
+					priceInTax:{
+						//要获取时执行get逻辑,初始默认走get
+						get:function(){
+							return this.price * 1.08;
+						},
+						//要赋值时执行set逻辑，需要传进来一个数值
+						//priceInTax接收到赋值后，会走set逻辑，传给value，计算后再传给price变量
+						set:function(value){
+							this.price = value / 1.08;
+						}
+					},
+					//price得到了修改后，同时priceChinaRMB也跟着变化
+					priceChinaRMB:function(){
+						return Math.round(this.priceInTax / 16.75);
+					}
+				},
+				methods:{
+					//将传进来的新值赋给priceInTax
+					btnclick: function(newP){
+						this.priceInTax = newP;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--watch-->
+		<!--与computed 属性类似，用于观察变量的变化，进行相应的处理。-->
+		<div id="app">
+			<p>今年3月3日发卖任天堂新一代主机Switch现价格是：{{price}}日元，含税价格是{{priceInTax}}日元，折合人民币为：{{priceChinaRMB}}元。</p>
+			<!--按钮绑定btnclick方法-->
+			<button @click="btnclick(10000)">加价10000日元</button>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//为了不使初期化为0，先把price为0
+					price: 0,
+					//在watch的实现方式当中，需要的数据要先在data中定义
+					priceInTax: 0,
+					priceChinaRMB: 0
+				},
+				//增加一个watch属性
+				watch:{
+					//当price 发生变化时才会调用这个函数，分别传入新、旧两个参数
+					price: function(newVal,oldVal){
+						console.log(newVal,oldVal);
+						//同时求出两个数据
+						this.priceInTax = Math.round(this.price * 1.08);
+						this.priceChinaRMB = Math.round(this.priceInTax / 16.75);
+					}
+				},
+				//添加方法
+				methods:{
+					//传进来一个addPrice,加给当前价格
+					btnclick: function(addPrice){
+						this.price += addPrice;
+					}
+				}
+			});
+			//手动赋值，初始将值会改变一次，其他两个也会出现
+			vm.price = 29980;
+		</script>
+	</body>
+</html>

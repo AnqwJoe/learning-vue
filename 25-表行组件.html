@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--为自己的页面表格编写表行组件-->
+		<div id="app">
+			<h1>2017年最期待的游戏是：</h1>
+			<table border="1">
+				<tr>
+					<td>编号</td>
+					<td>游戏名称</td>
+				</tr>
+				<!--表行祖先需要使用 is 属性，否则不会显示在table当中-->
+				<tr is="my-row1"></tr>
+				<tr is="my-row2"></tr>
+				<tr is="my-row3"></tr>
+				<!--表行内容-->
+			<!--<my-row1></my-row1>
+				<my-row2></my-row2>
+				<my-row3></my-row3>-->
+			</table>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('my-row1',{
+				template:'<tr><td>(1)</td><td>塞尔达传说：荒野之息</td></tr>'
+			});
+			Vue.component('my-row2',{
+				template:'<tr><td>(2)</td><td>马里奥奥德赛</td></tr>'
+			});
+			Vue.component('my-row3',{
+				template:'<tr><td>(3)</td><td>喷射乌贼娘2代</td></tr>'
+			});
+			let vm = new Vue({
+				el:'#app'
+			})
+		</script>
+	</body>
+</html>

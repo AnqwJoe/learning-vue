@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-on-->
+		<!--页面元素的事件绑定-->
+		<div id="app">
+			<input id="txtName" v-on:keyup="txtKeyup($event)" />
+			<button id="btnOk" v-on:click="btnclick($event)">OK</button>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				methods:{
+					txtKeyup:function(event){
+						//执行debugLog 方法
+						this.debugLog(event);
+					},
+					btnclick:function(event){
+						this.debugLog(event);
+					},
+					//定义触发的方法
+					debugLog:function(event){
+						//打印事件对象里的属性
+						console.log(
+							//srcElement 与 target作用是相当的 表示当前事件源
+							event.srcElement.tagName,
+							event.srcElement.id,
+							event.srcElement.innerHTML,
+							event.key ? event.key : ''
+						);
+					}
+					
+				}
+			});
+		</script>
+	</body>
+</html>

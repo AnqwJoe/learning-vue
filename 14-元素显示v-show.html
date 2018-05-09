@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-show-->
+		<!--标记是否显示html元素；但是v-show设置的标记在html DOM中不会消失(和v-if的区别)-->
+		<div id="app">
+			<!--v-show等于一个布尔值的变量-->
+			<!--h1隐藏时为 display:none; 元素还在-->
+			<h1 v-show="result">任天堂新一代主机Switch</h1>
+			<button @click="btnclick">切换</button>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//这里放布尔值
+					result:true
+				},
+				methods:{
+					btnclick:function(){
+						//取反
+						this.result = !this.result;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-for-->
+		<!--循环JS对象，把对象的内容循环显示到页面上-->
+		<div id="app">
+			<!--先value 后key-->
+			<div v-for="(value,key) in mygame">{{key}} : {{value}}</div>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//这次定义个对象
+					mygame:{
+						title:'乌贼娘2代',
+						price:350,
+						pubdate:'2017年夏',
+						category:'射击',
+						agerange:'全年龄'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

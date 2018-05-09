@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--组件的局部注册-->
+		<!--Vue.js的组件不仅可以单独声明注册使用，还可以在Vue实例中进行局部注册使用-->
+		<div id="app">
+			<my-weather></my-weather>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			//这里定义一个对象
+			let WeatherComponent = {
+				//模板内容
+				template:'<div>今天下雨，随他去吧！</div>'
+			};
+			//Vue实例
+			let vm = new Vue({
+				el:'#app',
+				//局部组件注册，注意是components
+				components:{
+					//组件名：用到的对象
+					'my-weather':WeatherComponent
+				}
+			});
+		</script>
+	</body>
+</html>

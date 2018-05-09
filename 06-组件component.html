@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--component-->
+		<!--定义页面的局部区域块，完成单独页面的小功能-->
+		
+		<div id="app">
+			<ul>
+				<!--组件-->
+				<!--循环数组games，循环的每一个 item 动态绑定赋给自定义属性 gamename,此时就可以用 gamename.title获取每一个游戏名-->
+				<game-item v-for="item in games" v-bind:gamename='item'></game-item>
+			</ul>
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			//组件定义:game-item ,定义一个新的标签
+			Vue.component('game-item',{
+				//传一个自定义属性gamename
+				props:['gamename'],
+				//模板所显示的内容
+				template:'<li>{{ gamename.title }}</li>'
+			});
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//定义一个数组
+					games:[
+						{title:'斗地主'},
+						{title:'打麻将'},
+						{title:'UNO'}
+					]
+				}
+			});
+		</script>
+	</body>
+</html>

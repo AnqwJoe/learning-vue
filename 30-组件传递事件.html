@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-on-->
+		<!--侦听组件事件,当组件触发事件后进行事件处理-->
+		<!--$emit-->
+		<!--触发事件,并将数据提交给事件侦听者-->
+		
+		<div id="app">
+			<h1>加法</h1>
+			<!--a,b子组件的参数, 监听子组件的add_event方法, 如果子组件触发了该方法,会调用父组件的getAddResult方法-->
+			<add-method :a='6' :b='12' @add_event='getAddResult'></add-method>
+			<hr />
+			<h3>{{result}}</h3>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('add-method',{
+				props:['a','b'],
+				//点击后会激活子组件的add方法
+				template:'<div><button @click="add">加吧</button></div>',
+				methods:{
+					add:function(){
+						var value = 0;
+						value = this.a + this.b;
+						//子组件触发add_event事件,把数据传给父组件(也就是Vue实例)
+						this.$emit('add_event',{result:value});
+					}
+				}
+			});
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					result:0
+				},
+				methods:{
+					//从子组件接收传入的参数是$emit的第二个参数
+					getAddResult: function(pval){
+						//result 同 子组件的 result,再传给父组件的result,再赋给h3
+						this.result = pval.result;
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--为组件传递变量-->
+		<!--制作可接受变量参数的组件-->
+		<div id="app">
+			<!--改变myname 从而影响pname 改变模板显示的内容-->
+			<div>请输入您的名字：<input type="text" v-model.lazy="myname" /></div>
+			<hr />
+			<!--把myname变量 传递给自定义属性pname-->
+			<say-hello :pname="myname"></say-hello>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			//全局变量
+			Vue.component('say-hello',{
+				//属性名的数组
+				props:['pname'],
+				template:'<div>你好，<strong>{{pname}}</strong>！</div>'
+			});
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					myname:'anqw'
+				}
+			});
+		</script>
+	</body>
+</html>

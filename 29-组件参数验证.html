@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--props 组件参数验证语法-->
+		<!--为组件中接受到的变量进行逻辑验证-->
+		<div id="app">
+			<h1>个人资料</h1>
+			<!--在组件中对传进来的参数进行验证-->
+			<!--name是自带属性不需要 v-bind-->
+			<show-member-info name='anqw' :age="25" :detail = "{address:'China',language:'Chinese'}" ></show-member-info>
+		</div>
+		
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			//全局组件
+			Vue.component('show-member-info',{
+				//属性对象集合
+				props:{
+					name:{
+						type: String,
+						//必须输入项
+						required: true
+					},
+					age:{
+						type:Number,
+						//校验
+						validator:function(value){
+							return value >= 0 && value <= 130;
+						}
+					},
+					//属性里还能对应多个内容
+					detail:{
+						type:Object,
+						//如果在组件中不传detail里的属性会走默认的逻辑
+						default: function(){
+							return {
+								address:'US',
+								language: 'English'
+							};
+						}
+					}
+				},
+				template: '<div>姓名:{{this.name}}<br>年龄:{{this.age}}岁<br>地址:{{this.detail.address}}<br>语言:{{this.detail.language}}</div>'
+			});
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+			
+		</script>
+	</body>
+</html>

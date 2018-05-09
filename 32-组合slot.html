@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--slot命名-->
+		<!--在子组件中通过为多个slot进行命名,来接受父组件的不同内容的数据-->
+		<div id="app">
+			<nba-all-stars c='奥尼尔' pf='加内特'>
+				<!--将sf插到 name为sf的插槽当中-->
+				<span slot='sf'>皮尔斯</span>
+				<span slot='sg'>雷阿伦</span>
+				<span slot='pg'>隆多</span>
+			</nba-all-stars>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('nba-all-stars',{
+				props:['c','pf'],
+				//分别用name属性给slot插槽起名字
+				//可以使用ES6 写法 (`内容`) 来创建模板
+				template:`<div>
+							//通过模板的参数
+							<div>中锋:{{c}}</div>
+							<div>大前:{{pf}}</div>
+							//通过slot
+							<div>小前:<slot name="sf"></slot></div>
+							<div>分卫:<slot name="sg"></slot></div>
+							<div>控卫:<slot name="pg"></slot></div>
+						</div>`
+			});
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+			
+		</script>
+	</body>
+</html>

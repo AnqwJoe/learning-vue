@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-model-->
+		<!--input[type="text"]-->
+		<!--为表单控件元素创建双向数据绑定。（将JS变量的值“快速”设定到控件上，然后将用户输入的内容“快速”设置回JS变量-->
+		
+		<div id="app">
+			<input type="text" v-model="msg" placeholder="在这里直接进行编辑" />
+			<p>Message is: {{msg}}</p>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'我爱马里奥'
+				}
+			});
+		</script>
+	</body>
+</html>

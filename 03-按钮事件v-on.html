@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+	</head>
+	<body>
+		<!--v-on-->
+		<!--为页面元素绑定各种事件 (keydown,keyup,click,dbclick,load,etd)-->
+		<div id="app">
+			<!--更改后的mygame会动态的展示在这里-->
+			<p>我喜欢玩的游戏：{{mygame}}</p>
+			<!--点击按钮时执行 fgame函数,同时传入参数-->
+			<button v-on:click="fgame('塞尔达传说')">塞尔达传说</button>
+			<button v-on:click="fgame('魔兽争霸')">魔兽争霸</button>
+			<button v-on:click="fgame('风色幻想')">风色幻想</button>
+			<button v-on:click="fgame('实况足球')">实况足球</button>
+			<button v-on:click="fgame('我的世界')">我的世界</button>
+		</div>
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					mygame:'超级马里奥'
+				},
+				//用methods定义方法
+				methods:{
+					//更改data中的name
+					fgame:function(pname){
+						this.mygame = pname;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

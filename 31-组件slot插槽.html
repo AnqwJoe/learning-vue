@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--slot-->
+		<!--父组件与子组件的通讯方式 ,可以将父组件的内容显示在子组件当中-->
+		<div id="app">
+			<!--子组件标签内的内容需要通过<slot></slot>显示-->
+			<say-to pname="koma">你的视频太差了</say-to>
+			<say-to pname="mike">你千万不要学koma</say-to>
+			<say-to pname="john">你教教他们两个吧</say-to>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('say-to',{
+				props:['pname'],
+				//在子组件中定义一个slot标记,如果没有,组件内容将不显示
+				template:'<div>你好,<strong>{{pname}}</strong>!<slot></slot></div>'
+			})
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>

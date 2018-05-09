@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--v-model-->
+		<!--为页面输入框进行数据双向绑定-->
+	
+		<div id="app">
+			<!--表单绑定数据可动态进行修改-->
+			<input type="text" v-model="mygame" />
+			<!--动态展示-->
+			<p>{{mygame}}</p>
+		</div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					mygame:'超级马里奥'
+				}
+			})
+		</script>
+	</body>
+</html>

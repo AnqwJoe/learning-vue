@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.active{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<!--v-bind:class-->
+		<!--为html标记绑定样式  单class属性-->
+		<div id="app">
+			<!--给div的class的属性绑定上isActive变量-->
+			<!--绑定class的属性要用大括号包裹-->
+			<div v-bind:class="{active:isActive}">红色文本1</div>
+			<!--v-bind缩写-->
+			<div :class="{active:isActive}">红色文本2</div>
+			<button @click="btnclick">改变class</button>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					//当它为true时，才会给div的class赋上active属性
+					isActive: true
+				},
+				methods:{
+					//点击执行该函数，上面的class=active将不再被绑定
+					btnclick:function(){
+						//对当前属性取反
+						this.isActive = !this.isActive;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

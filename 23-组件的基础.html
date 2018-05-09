@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--component,portlet（组件，小功能）-->
+		<!--组件就是页面上的一小块区域的内容，完成一个小的页面功能-->
+		
+		<div id="app">
+			<today-weather></today-weather>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			//注册一个全局性组件，一定要写在APP声明之前
+			Vue.component('today-weather',{
+				//模板
+				template:'<p>今天下雨，出不去啦，干什么呢？看youtube吧！</p>'
+			})
+			
+			let app = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>
