@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--自定义CSS样式
+			
+			~~~bash
+			 $ cd assets
+			 $ nano my.css
+			
+			...
+			.myclass1{
+				color: red;
+				border: 2px solid blue;
+			}
+			...
+			
+			$ cd ../
+			$ nano App.vue
+			
+			(入口的JS——main.js)
+			(入口的组件——App.vue)
+			
+			...
+			#这里必须是该文件对于mycss.css的相对路径
+			import './assets/mycss.css'
+			...
+			
+			使用
+			<div class="myclass1">你好！</div>
+		-->
+		<div id="app"></div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:'#app',
+				data:{
+					msg:'今天天气不错'
+				}
+			})
+		</script>
+	</body>
+</html>

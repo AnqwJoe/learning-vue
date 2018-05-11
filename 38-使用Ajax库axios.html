@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--Ajax库 axios-->
+		<!--
+			为网页增加远程数据存储能力 (Ajax)
+			HTTP 库 axios （浏览器 or Node.js）
+			
+			https://github.com/axios/axios
+		-->
+		
+		<!--
+			~~~bash
+			$ cd myweb
+			$ npm install --save --save-exact axios vue-axios
+			
+			注册组件
+			$ nano main.js
+			...
+			import axios from 'axios'
+			import VueAxios from 'vue-axios'
+			Vue.use(VueAxios, axios)   //import 之后 在全局区中注册这两个组件
+			...
+			
+			各个组件
+			$ nano HelloWorld.vue
+			...
+			<pre>{{content}}</pre>
+			...
+			
+			export default{
+				name:'HelloWorld',
+				data(){
+					return{
+						content:''
+					};
+				},
+				//组件中的方法，当画面初始化完成后会调用这个方法
+				mounted(){
+					//利用axios 向这个api网址进行提交，返回数据body 把body.data 赋值给 content
+					this.axios.post("http://api.komavideo.com/news/list").then(body => {
+						this.content = body.data;
+					});
+				}
+			}
+		-->
+		<div id="app"></div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--
+			vue-webpack工程导入 bootstrap4框架
+			
+			~~~bash
+			$ cd myweb
+			$ npm install bootstrap --save(把bootstrap作为依赖库存放到package.json文件中去) --save-exact(去掉尖号,精确版本号,)
+			$ nano main.js
+			...
+			import 'bootstrap/dist/css/bootstrap.min.css'
+			...
+			
+			$ cd src
+			$ nano App.vue
+			
+			...
+			<button class="btn btn-primary">确定</button>
+			<button class="btn btn-success">使用</button>
+			<button class="btn btn-danger">注意</button>
+			...
+			
+			$ npm start
+		-->
+		
+		<div id="app"></div>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			let vm = new Vue({
+				el:'#app'
+			})
+		</script>
+	</body>
+</html>

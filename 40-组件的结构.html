@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<!--
+			所有的组件都被统一放在工程中的组件文件夹中
+			
+			~~~
+			{myproject}/src/components
+			~~~
+			
+			组件格式
+			template: 组件html内容
+			script: 组件js脚本(ES6)
+			style: 组件css样式单
+			
+			实例：
+			<template>
+				<div class="container">
+					<h1>{{ msg }}</h1>
+				</div>
+			</template>
+			
+			<script>
+				//import ...
+				export default{
+					name: 'HelloWorld',
+					data(){
+						return{
+							msg: 'Welcome to your Vue.js App'
+						}
+					}
+				}
+			</script>
+			
+			<style scoped>
+				/*scoped :仅仅应用在该组件内*/
+				h1{
+					font-weight: bold;
+					color: red;
+				}
+			</style>
+		-->
+		
+		
+		<div id="app"></div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--建立 webpack 模板工程-->
+		
+		<!--
+			~~~bash
+			$ vue init webpack(模板名) myweb(目录名)
+			$ cd myweb   进入目录
+			记得去掉package.json vue版本的角标符 精确版本
+			$ npm run dev === npm start （http://localhost:8080）
+			$ npm run build  打包输出,发布时才会用到 ，打包完会出现dist目录
+			~~~
+			
+			src :源文件文件夹
+			dist : 打包文件夹
+			package.json : 项目设置文件
+		-->
+		<div id="app"></div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+		<script type="text/javascript">
+			
+			let vm = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>
