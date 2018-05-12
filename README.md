@@ -19,4 +19,4 @@
 ### ToDoList
 一个用Vue.js写的 todolist：
 
-![ToDoList](https://anqwjoe.github.io/learning-vue/other/案例-todolist.html)
+![ToDoList](https://anqwjoe.github.io/learning-vue/others/vue-todolist.jpg)
