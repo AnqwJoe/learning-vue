@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		
+		<title></title>
+		<style type="text/css">
+			body{
+				font-family: "微软雅黑";
+				-webkit-user-select:none;
+			    -moz-user-select:none;
+			    -ms-user-select:none;
+			    user-select:none;
+			}
+			.active{
+				color: gray;
+				text-decoration: line-through;
+				font-weight: normal;
+			}
+			li{
+				font-weight: bold;
+				cursor: pointer;
+				line-height: 2;
+			}
+			#app{
+				display: inline-block;
+				margin-left: 30%;
+			}
+			button{
+				  display: inline-block;
+				  padding: 6px 12px;
+				  margin-bottom: 0;
+				  font-size: 14px;
+				  line-height: 1.4;
+				  text-align: center;
+				  white-space: nowrap;
+				  vertical-align: middle;
+				  cursor: pointer;
+				  background:#00B7D6;
+				  color: #fff;
+				  border: 1px solid transparent;
+				  border-radius: 4px;
+			}
+			.delete{
+				padding: 3px;
+				font-size: 10px;
+				margin-left: 40px;
+				background-color: orangered;
+			}
+			input{
+				  box-sizing: border-box;
+				  height: 33px;
+				  padding: 5px 10px;
+				  font-size: 12px;
+				  line-height: 1.5;
+				  border-radius: 3px;
+				  border: 1px solid gray;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1>TO DO LIST</h1>
+			<h4>点击文字划掉，点击删除消除</h4>
+			<div>
+				<input type="text" v-model="inputValue" />
+				<button @click="handleClick" class="btn">提交</button>
+			</div>
+			<ul>
+				<todo-item 
+					v-for="(item,index) in list" 
+					:key="index" 
+					:content="item"  
+					:indexes="index" 
+					@delete="handleDelete"
+					></todo-item>
+			</ul>
+		</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<script type="text/javascript">
+			
+			
+//			全局组件
+			Vue.component('todo-item',{
+				data(){
+					return {
+						styles : ''
+					}
+				},
+				props: ['content','indexes'],
+				template:`<li>
+							<span @click="clickThrough" :class="styles">{{content}}</span>
+							<button class="delete" @click="clickDelete">删除</button>
+						</li>`,
+				methods: {
+					clickThrough: function() {
+						if(this.styles == 'active'){
+							this.styles = ''
+						}else{
+							this.styles = 'active'
+						}
+					},
+					clickDelete: function() {
+						//子组件要想删除掉,一定要去父组件里把渲染的这条数据删除掉
+						this.$emit('delete',this.indexes)
+					}
+				}
+			});
+			
+//			局部组件
+//			var TodoItem = {
+//				//接收content属性
+//				props: ['content'],
+//				template: '<li>{{content}}</li>'
+//			}
+			
+			let vm = new Vue({
+				el:'#app',
+				//在实例里使用局部组件
+//				components: {
+//					'todo-item':TodoItem
+//				},
+				data: {
+					inputValue: '',
+					list: []
+				},
+				methods: {
+					handleClick: function() {
+						if(this.inputValue){
+							this.list.push(this.inputValue)
+							this.inputValue = ''
+						}
+					},
+					handleDelete: function(indexes) {
+						this.list.splice(indexes,1)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
