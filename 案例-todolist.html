@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<style type="text/css">
 			body{
@@ -24,7 +24,7 @@
 			}
 			#app{
 				display: inline-block;
-				margin-left: 30%;
+				margin:0 10%;
 			}
 			button{
 				  display: inline-block;
@@ -61,9 +61,9 @@
 	<body>
 		<div id="app">
 			<h1>TO DO LIST</h1>
-			<h4>点击文字划掉，点击删除消除</h4>
+			<h4>敲回车提交，点击文字划掉，点击删除按钮消除</h4>
 			<div>
-				<input type="text" v-model="inputValue" />
+				<input type="text" v-model="inputValue" @keyup.enter="handleClick" />
 				<button @click="handleClick" class="btn">提交</button>
 			</div>
 			<ul>
