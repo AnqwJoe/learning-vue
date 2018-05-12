@@ -17,6 +17,8 @@
 
 
 ### ToDoList
-一个用Vue.js写的 todolist：
+一个用Vue.js写的 todolist：  
+  
+[点击预览](https://anqwjoe.github.io/learning-vue/案例-todolist.html)
 
 ![ToDoList](https://anqwjoe.github.io/learning-vue/others/vue-todolist.jpg)
