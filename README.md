@@ -21,4 +21,4 @@
   
 [点击预览](https://anqwjoe.github.io/learning-vue/案例-todolist.html)
 
-![ToDoList](https://anqwjoe.github.io/learning-vue/others/vue-todolist.jpg)
+![ToDoList](https://anqwjoe.github.io/learning-vue/others/todolist.jpg)
