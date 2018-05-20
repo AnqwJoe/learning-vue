@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<style type="text/css">
+			.activated{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--动态的向一个DOM元素 去添加或删除一个类，实现页面效果的变更-->
+			<!--方法一：class的对象绑定-->
+			<!--isActivated 为 true时，activated的样式名字就会显示-->
+			<div @click="handleDivClick1" 
+				:class="{activated: isActivated}">
+				hello world
+			</div>
+			
+			<!--方法二：class和数组绑定-->
+			<!--把样式名传入变量中以数组的形式绑定给 class-->
+			<div @click="handleDivClick2" 
+				:class="[activated, activatedOne]">
+				bye world
+			</div>
+			
+			<!--用style 改变样式-->
+			<!--方法三：把样式对象直接传入变量中，与style绑定-->
+			<div :style="styleObj" @click="handleDivClick3">touch world</div>
+			
+			<!--方法四： 把样式变量直接传入数组中,或直接把样式写进去-->
+			<div :style="[styleObj,{fontSize: '20px'}]" @click="handleDivClick3">love world</div>
+			
+		</div>
+			
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					//变量存放布尔值
+					isActivated: false,
+					//变量存放 class名
+					activated: '',
+					activatedOne: 'activated-one',
+					//变量存放样式
+					styleObj: {
+						color: "black"
+					}
+				},
+				methods: {
+					handleDivClick1: function() {
+						//点击改变 class名绑定的布尔值 
+						this.isActivated = !this.isActivated;
+					},
+					handleDivClick2: function() {
+						//点击改变 class名
+						this.activated = this.activated === 'activated' ? '' : 'activated';
+					},
+					handleDivClick3: function() {
+						//点击直接改变样式
+						this.styleObj.color = this.styleObj.color ==='black' ? 'red' : 'black'
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

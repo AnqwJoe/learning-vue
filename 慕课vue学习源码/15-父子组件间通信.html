@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+<div id="app">
+	<!--父往子传递-->
+	<!--父组件通过绑定属性的形式向子组件传递数据-->
+	<counter :count="3" @inc="handleIncrease"></counter>
+	<counter :count="2" @inc="handleIncrease"></counter>
+	
+	<!--子往父传递-->
+	<!--子组件通过事件触发的形式向父组件传递数据-->
+	<div>{{total}}</div>
+</div>
+
+<script>
+	var counter = {
+		props: ['count'],
+		data: function() {
+			return {
+				//定义一个number 把获取来的数据克隆一个传进去
+				number: this.count
+			}
+		},
+		template: '<div @click="handleClick">{{number}}</div>',
+		methods: {
+			handleClick: function() {
+				this.number += 2;
+				//子组件通过点击将事件触发出去
+				this.$emit('inc', 2)
+			}
+		}
+	}
+	var vm = new Vue({
+		el: "#app",
+		components: {
+			counter: counter
+		},
+		data: {
+			total: 5
+		},
+		methods: {
+			// 父组件执行的函数里可以直接接收到 $emit()的参数
+			handleIncrease: function(step) {
+				this.total += step;
+			}
+		}
+	});
+			
+		</script>
+	</body>
+</html>

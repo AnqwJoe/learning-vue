@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<child :content="123"></child>
+		</div>
+		
+		<script>
+			
+			Vue.component('child',{
+				props: {
+					//设定子组件接收的content 属性，
+					//	要么是数字,要么是字符串
+					content: [String, Number]
+					/*
+					也可以这样写：
+					content: {
+						//类型
+						type: String,
+						
+						//设定这个属性是必须的
+						required: true,
+						
+						//如果不给default 传数值，默认default
+						default: 'default value',
+						
+						//对传入 content属性 添加校验
+						//规定长度必须大于5
+						validator: function(value) {
+							return (value.length > 5)
+						}
+					}
+					*/
+				},
+				template: '<div>{{content}}</div>'
+			})
+			
+			var vm = new Vue({
+				el: "#app"
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="inputValue"/>
+			<button v-on:click="handleBtnClick">提交</button>
+			<ul>
+				<!--使用组件-->
+				<!--向子组件传入一个绑定值-->
+				<!--循环list 每一项，通过content变量传给了 todo-item 子组件 -->
+				<todo-item 
+					v-bind:content="item" 
+					v-for="(item, index) in list" 
+					v-bind:index="index" 
+					@delete="handleItemDelete">
+				</todo-item>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			// 定义全局组件
+			Vue.component('todo-item',{
+				// 从父组件接收一个 content参数
+				props: ['content','index'],
+				// 依然用插值符接收
+				template: "<li @click='handleItemClick'>{{content}}</li>",
+				methods: {
+					handleItemClick: function() {
+						//点击子组件，子组件会向外触发一个 delete 事件 
+						this.$emit("delete")
+					}
+				}
+			});
+			
+			
+			/*
+			 定义局部组件
+			 	var TodoItem = {
+				props: ['content'],
+				template: "<li>{{content}}</li>"
+			}
+			*/
+			
+			// Vue实例 其实就是父组件
+			// #app 标签下的所有内容实际上就是父组件的模板
+			var app = new Vue({
+				el: '#app',
+				/*	
+				在实例中使用局部组件
+				components: {
+					// 组件名：变量名
+					'todo-item': TodoItem
+				},
+				*/
+				data: {
+					list: [],
+					inputValue: ''
+				},
+				methods: {
+					handleBtnClick: function() {
+						this.list.push(this.inputValue);
+						this.inputValue = '';
+					},
+					handleItemDelete: function(index) {
+						this.list.splice(index,1);
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

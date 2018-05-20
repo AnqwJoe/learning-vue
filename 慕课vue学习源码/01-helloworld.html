@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello world</title>
+	</head>
+	<body>
+		<!--{{}}：插值表达式-->
+		<div id="app">{{content}}</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<script>
+			
+			//创建Vue实例
+			var app = new Vue({
+				//el项 ：Vue实例接管的区域
+				el: "#app",
+				//定义数据
+				data: {
+					content: "helloworld!"
+				}
+			});
+			
+		</script>
+		
+	<!--
+		原生JS方法
+		<script>
+			var dom = document.getElementById('app');
+			dom.innerHTML = 'helloworld';
+		</script>
+	-->
+	</body>
+</html>

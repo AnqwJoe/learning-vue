@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">hello world</div>
+		
+		<script>
+			// 生命周期函数就是Vue实例在某一个时间点会自动执行的函数
+			var vm = new Vue({
+				el: "#app",
+				// 当Vue 实例初始化后，会自动调用该函数
+				beforeCreate: function() {
+					console.log("beforeCreated");
+					// beforeCreated
+				},
+				// 实例创建完成后
+				created: function() {
+					console.log("created");
+					// created
+				},
+				// 当检测到没有 template 这个属性时，就把外侧的html 当作模板来进行渲染
+				// 挂载虚拟DOM时
+				beforeMount: function() {
+					console.log(this.$el);
+					console.log("beforeMount");
+				},
+				// 页面挂载之后
+				Mounted: function() {
+					console.log(this.$el);
+					console.log("Mounted");
+				},
+				
+			});
+			
+		</script>
+	</body>
+</html>

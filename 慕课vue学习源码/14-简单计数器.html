@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<counter ref="one" @change="handleChange"></counter>
+			<counter ref="two" @change="handleChange"></counter>
+			<div>{{total}}</div>
+		</div>
+		
+		<script>
+			
+			Vue.component('counter',{
+				template: '<div @click="handleClick">{{number}}</div>',
+				data: function(){
+					return {
+						number: 0
+					}
+				},
+				methods: {
+					handleClick: function() {
+						this.number ++;
+						// $emit() 自定义事件向父组件通信
+						this.$emit('change');
+					}
+				}
+			});
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					total: 0
+				},
+				methods: {
+					handleChange: function() {
+						//可以使用自加一方法
+						//this.total++;
+						//也可以求二者之和
+						// 通过 $refs 获取子组件的引用，再获取数据
+						this.total = this.$refs.one.number + this.$refs.two.number;
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

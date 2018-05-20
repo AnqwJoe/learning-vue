@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--即将显示的一瞬间触发 before-enter事件-->
+			<!--显示时一瞬间触发enter事件-->
+			<!--显示后一瞬间触发 after-enter事件-->
+			<transition name="fade" 
+				@before-enter="handleBeforeEnter" 
+				@enter="handleEnter" @after-enter="handleAfterEnter">
+				<div v-show="show">hello world</div>
+			</transition>
+			<button @click="handleClick">toggle</button>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: true
+				},
+				methods: {
+					handleClick: function() {
+						this.show = !this.show
+					},
+					//el参数指动画包裹的DIV标签
+					//即将显示函数
+					handleBeforeEnter: function(el) {
+						el.style.color = 'red'
+					},
+					//显示时
+					handleEnter: function(el,done) {
+						//两秒后变为绿色
+						setTimeout(() => {
+							el.style.color = 'green'
+						},2000)
+						//四秒后动画结束
+						setTimeout(() => {
+							done()
+						},4000)
+					},
+					//显示后
+					handleAfterEnter: function(el) {
+						el.style.color = 'black'
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

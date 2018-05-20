@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--最好不要在模板上出现逻辑-->
+			<!-- {{firstName + ' ' + lastName}} -->
+			{{fullName}}
+			{{age}}
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					firstName: 'Anqw',
+					lastName: 'Joe',
+					fullName: 'Anqw Joe',
+					age: 25
+				},
+				// 方法一：侦听器，内置缓存，但是代码复杂很多
+				watch: {
+					// 当firstName 发生改变时
+					firstName: function() {
+						console.log("计算了一次");
+						this.fullName = this.firstName + ' ' + this.lastName;
+					},
+					//当 lastName 发生改变时
+					lastName: function() {
+						console.log("计算了一次");
+						this.fullName = this.firstName + ' ' + this.lastName;
+					}
+				}
+				
+				// 方法二：计算属性，内置缓存，简洁性能高，优先推荐
+				/*computed: {
+					fullName: function() {
+						
+						 	fullName 依赖 firstName 与 lastName ，
+						 	当这二者没有发生改变时，计算属性就不会重新计算，
+						 	继续使用上次计算结果
+						 
+						console.log("计算了一次");
+						return this.firstName + ' ' + this.lastName;
+					}
+				}*/
+				
+				/*
+				//	方法三：定义方法函数，每次都会重新执行一次 	
+				methods: {
+					fullName: function() {
+						console.log("计算了一次");
+						return this.firstName + ' ' + this.lastName;
+					}
+				}
+				*/
+			});
+			
+		</script>
+	</body>
+</html>

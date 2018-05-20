@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--
+				加native修饰符，监听原生点击事件,
+				方法同子组件设置自定义事件向父组件触发
+			-->
+			<child @click.native='handleClick'></child>
+		</div>
+		
+		<script>
+			Vue.component('child',{
+				template: '<div>child</div>'
+			})
+			var vm = new Vue({
+				el: "#app",
+				methods: {
+					handleClick: function() {
+						alert('click')
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<!--<style type="text/css">
+			.v-enter, .v-leave-to {
+				opacity: 0;
+			}
+			.v-enter-active, .v-leave-active{
+				transition: opacity 1s;
+			}
+		</style>-->
+	</head>
+	<body>
+		
+		<div id="app">
+			<fade :show="show">
+				<div>hello world</div>
+			</fade>
+			<fade :show="show">
+				<h1>hello world</h1>
+			</fade>
+			<button @click="handBtnClick">toggle</button>
+		</div>
+		
+		<script>
+			//所有动画写在fade内
+			Vue.component('fade',{
+				props: ['show'],
+				template: `<transition @before-enter="handleBeforeEnter" 
+								@enter="handleEnter">
+								<slot v-if="show"></slot>
+							</transition>`,
+				methods: {
+					handleBeforeEnter: function(el) {
+						el.style.color = 'red'
+					},
+					handleEnter: function(el,done) {
+						setTimeout(()=>{
+							el.style.color = 'green'
+						},2000)
+						done()
+					}
+				}
+			})
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: false
+				},
+				methods: {
+					handBtnClick: function(){
+						this.show = !this.show
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

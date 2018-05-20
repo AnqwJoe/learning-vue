@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--显示隐藏-->
+			<!--
+				v-if 对应的变量如果是 false 就不会存在DOM上
+			-->
+			<div v-if="show">{{message}}</div>
+			<!--v-if 条件不满足时 执行 v-else，需要紧贴使用-->
+			<div v-else>bye world</div>
+			<!--
+				v-show 对应的变量如果是 false DOM依然存在，只是display:none
+				如果需要经常改变元素的显示隐藏 用v-show 性能会高一些
+			-->
+			<div v-show="show">{{message}}</div>
+			
+			<!--条件判断-->
+			<div v-if="letter === 'a'">This is a</div>
+			<div v-else-if="letter === 'b'">This is b</div>
+			<div v-else>This is other</div>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					message: 'hello world',
+					show: false,
+					letter: 'g'
+				}
+			});
+			
+		</script>
+	</body>
+</html>

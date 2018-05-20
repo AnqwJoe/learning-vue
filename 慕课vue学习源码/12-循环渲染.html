@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		<!--
+			改变数组：
+			Vue 无法直接操作下标改变数组，要使用以下变异方法：
+			push pop shift unshift splice sort reverse
+			
+			set 方法改变
+			Vue.set(要改的数组，索引，项)
+			
+			也可以直接改变引用地址 (整个修改)：
+			重新修改 vm.list=[...]
+		-->
+		<!--
+			改变对象：
+			同数组，直接改变引用地址 (整个修改)：
+			vm.userInfo={...}
+			
+			set 方法改变
+			Vue.set(要改的对象，键，值)
+			Vue.set(vm.userInfo, 'address','beijing')
+		-->
+		<div id="app">
+			<!--数组循环-->
+			<!--循环 ：（项，索引）-->
+			<!--使用唯一的 Key值-->
+			<div v-for="(item, index) of list" :key="item.id">{{item.text}}——{{index}}</div>
+			<br />
+			
+			<!--对象的循环-->
+			<!--循环： （值，键，索引）-->
+			<div v-for="(value, key, index) of userInfo">
+				{{value}}——{{key}}——{{index}}
+			</div>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					list: [{
+						id: '01232401',
+						text: 'Hello'
+					},{
+						id: '01232402',
+						text: 'Anqw'
+					},{
+						id: '01232403',
+						text: 'Joe'
+					}],
+					userInfo: {
+						name: 'Anqw',
+						age: 25,
+						gender: 'male',
+						salary: 'secret'
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

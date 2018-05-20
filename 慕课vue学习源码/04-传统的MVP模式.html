@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery-todoList</title>
+		<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<div>
+			<input id="input" type="text" />
+			<button id="btn">提交</button>
+			<ul id="list"></ul>
+		</div>
+		
+		<script>
+			// 构造函数
+			function Page() {
+				
+			}
+			/*	$.extend()函数用于将一个或多个对象的内容合并到目标对象,
+				此处给显示原型添加init方法		*/
+			$.extend(Page.prototype,{
+				init: function() {
+					this.bindEvents();
+				},
+				bindEvents: function() {
+					var btn = $('#btn');
+					// $.proxy() 用来改变 this 将上下文环境的this，改变为要执行函数内的this
+					// 也可以用 btn.on('click',this.handleBtnClick),因为handleBtnClick内部不需要 this
+					btn.on('click',$.proxy(this.handleBtnClick, this));
+				},
+				handleBtnClick: function() {
+					var inputElem = $('#input');
+					var inputValue = inputElem.val();
+					var ulElem = $('#list');
+					ulElem.append('<li>'+ inputValue +'</li>');
+					inputElem.val('');
+				}
+			})
+			
+			var page = new Page();
+			page.init();
+		</script>
+	</body>
+</html>

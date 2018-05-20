@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>hello world</title>
+	</head>
+	<body>
+		<div id="app">{{content}}</div>
+		
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<script>
+			
+			var app = new Vue({
+				el: "#app",
+				data: {
+					content: "helloworld!"
+				}
+			});
+			
+			setTimeout(function() {
+				//$data 是 data的别名，指 data 对象
+				app.$data.content = "byeworld!";
+			},2000);
+			
+		</script>
+	
+	<!--
+		原生JS方法
+		<script>
+			var dom = document.getElementById('app');
+			dom.innerHTML = 'helloworld';
+			
+			setTimeout(function() {
+				dom.innerHTML = 'byeworld';
+			},2000)
+		</script>
+	-->
+	
+	</body>
+</html>

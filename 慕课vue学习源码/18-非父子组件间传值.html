@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<!--非父子组件传值
+			Bus / 总线 / 发布订阅模式 / 观察者模式
+		-->
+		<div id="app">
+			<!--点击一个，另一个变成相同的-->
+			<child content='anqw'></child>
+			<child content='joe'></child>
+		</div>
+		
+		<script>
+			//每一个Vue 实例都会有bus 属性
+			Vue.prototype.bus = new Vue()
+			
+			Vue.component('child',{
+				data: function() {
+					return {
+						//父组件传过来的数据只能用不能改，
+						//所以需要拷贝一份
+						selfContent: this.content
+					}
+				},
+				props: {
+					content: String
+				},
+				template: '<div @click="handleClick">{{selfContent}}</div>',
+				methods: {
+					handleClick: function() {
+						//实例上挂载的bus ，这个bus 又是Vue 实例，
+						//所以会有$emit()方法，同时把内容传进参数
+						this.bus.$emit('change',this.selfContent);
+					}
+				},
+				//借助生命周期钩子,被挂载时执行
+				//$on 方法监听自定义事件
+				mounted: function() {
+					//固定this的指向
+					var this_ = this;
+					this.bus.$on('change', function(msg) {
+						this_.selfContent = msg
+					})
+				}
+			})
+			var vm = new Vue({
+				el: "#app"
+			});
+			
+		</script>
+	</body>
+</html>

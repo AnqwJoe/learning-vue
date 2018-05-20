@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<style type="text/css">
+			.v-enter, .v-leave-to {
+				opacity: 0;
+			}
+			.v-enter-active, .v-leave-active{
+				transition: opacity 1s;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!--in-out 先显示再隐藏-->
+			<!--<transition mode="in-out">-->
+			<!--out-in 先隐藏再显示-->
+			<transition mode="out-in">
+				<!--添加key值，防止复用-->
+				<div v-if="show" key="hello">hello world</div>
+				<div v-else key="bye">bye world</div>
+			</transition>
+			<button @click="handleClick">toggle</button>
+		</div>
+
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: true
+				},
+				methods: {
+					handleClick: function() {
+						this.show = !this.show
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

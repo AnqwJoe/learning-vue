@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<style type="text/css">
+			.v-enter, .v-leave-to {
+				opacity: 0;
+			}
+			.v-enter-active, .v-leave-active{
+				transition: opacity 1s;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<transition mode="out-in">
+				<!--动态组件-->
+				<compoment :is="type"></compoment>
+			</transition>
+			<button @click="handleClick">toggle</button>
+		</div>
+
+		<script>
+			
+			Vue.component('child',{
+				template: '<div>child</div>'
+			});
+			Vue.component('child-one',{
+				template: '<div>child-one</div>'
+			});
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					type: 'child'
+				},
+				methods: {
+					handleClick: function() {
+						this.type = this.type === 'child'?'child-one':'child'
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+	</head>
+	<body>
+	<!--CSS过渡-->
+	<style type="text/css">
+		.fade-enter,
+		.fade-leave-to {
+			opacity: 0;
+		}
+		.fade-enter-active,
+		.fade-leave-active {
+			transition: opacity 2s;
+		}
+	</style>
+		
+		<div id="app">
+			<!--动画时长以transition为准-->
+			<!--CSS动画-->
+			<transition :duration="5000"
+				type="transition"
+				name="fade" 
+				enter-active-class="animated tada fade-enter-active" appear
+				leave-active-class="animated shake fade-leave-active" 
+				appear-active-class="animated swing">
+				<div v-if="show">hello world</div>
+			</transition>
+			
+			<button @click="handleClick">切换</button>
+		</div>
+		
+		<script>
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					show: true
+				},
+				methods: {
+					handleClick: function() {
+						this.show = !this.show
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

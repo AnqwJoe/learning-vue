@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<child>
+				<!--首先父组件内传了一个插槽,
+					作用域插槽，必须用 template 标签包裹,
+					同时声明从子组件接收的数据都放在props中,
+					slot-scope 对应的属性名接收到数据后，
+					以li的形式进行展示.
+				-->
+				<template slot-scope="props">
+					<!--由父组件传递循环对应的模板-->
+					<li>{{props.item}} - hello</li>
+				</template>
+			</child>
+		</div>
+		
+		<script>
+			Vue.component('child',{
+				data: function() {
+					return {
+						list: [1,2,3,4]
+					}
+				},
+				//当子组件做循环，DOM结构需要由外部传递时
+				template: `<div>
+								<ul>
+									<slot 
+										v-for="item of list" 
+										:item="item">
+									</slot>
+								</ul>
+							</div>`
+			});
+			var vm = new Vue({
+				el: "#app"
+			});
+			
+		</script>
+	</body>
+</html>

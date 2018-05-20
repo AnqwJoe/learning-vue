@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<style type="text/css">
+			.v-enter, .v-leave-to{
+				opacity: 0;
+			}
+			.v-enter-active, .v-leave-active{
+				transition: opacity 1s;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="app">
+			<transition-group>
+				<div v-for="(item,index) of list" :key='item.id'>
+					{{item.title}}
+				</div>
+			</transition-group>
+			<button @click="handleBtnClick">add</button>
+		</div>
+		
+		<script>
+			var count = 0;
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					list: []
+				},
+				methods: {
+					handleBtnClick: function() {
+						this.list.push({
+							id: count++,
+							title: 'hello world'
+						})
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>

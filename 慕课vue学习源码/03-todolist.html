@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 
+				v-model 双向绑定，当表单框内容发生改变时，对应的data内的数据也会发生改变，反之同理
+			-->
+			<input type="text" v-model="inputValue"/>
+				<!-- v-on绑定事件-->
+			<button v-on:click="handleBtnClick">提交</button>
+			<ul>
+				<!--
+					循环 list 数据，循环的每一项都放到 item 内,list有几项就会循环出几个 li 标签
+				-->
+				<li v-for="item in list">{{item}}</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var app = new Vue({
+				el: '#app',
+				data: {
+					// 但是页面一开始都是干净的
+					// list: ['第一课内容', '第二课内容','2333333']
+					list: [],
+					inputValue: ''
+				},
+				// 方法都放在 methods 里
+				methods: {
+					handleBtnClick: function() {
+						// 因为 li 遍历 list，每次点击获取input中的内容添加到 list 数组内
+						this.list.push(this.inputValue);
+						this.inputValue = '';
+					}
+				}
+			});
+			
+		</script>
+	</body>
+</html>
